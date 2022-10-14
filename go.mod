@@ -1,4 +1,4 @@
-module ProxyChecker
+module ZmapProxyScanner
 
 go 1.19
 
