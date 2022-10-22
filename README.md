@@ -1,7 +1,5 @@
 # Zmap-ProxyScanner
 
-An Thread Safe fast way to find proxies. Find 2000-5000 working http,socks4,socks5 proxies in one scan.
-
 ![379e86d10c8e05e9d21a20647d37c70ea0d5e976c72a44a2a5506c88d31e5cf3](https://user-images.githubusercontent.com/65712074/195901928-721235f2-163e-4266-ae4e-d7c76b2626d2.png)
 
 
