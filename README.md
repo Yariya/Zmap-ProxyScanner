@@ -39,6 +39,9 @@ An Thread Safe fast way to find proxies. Find 2000-5000 working http,socks4,sock
   * Scan entire world for http,socks4 and socks5 proxies.
   * Inbuilt file + (from url) proxy scanner
   * Display ISP, Country
+  
+# Example Run
+  > zmap -p 8080 | ./ProxyScanner -p 8080
 
 # Build
   > Requires go v1.19+
