@@ -41,6 +41,7 @@ A Thread Safe fast way to find proxies. Find 2000-5000 working http,socks4,socks
   * Display ISP, Country
   
 # Example Run
+  * Be Sure to use an Hosting that allows Portscan just like https://pfcloud.io
   > zmap -p 8080 | ./ZmapProxyScanner -p 8080
 
 # Build
