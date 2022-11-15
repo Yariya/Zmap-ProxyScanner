@@ -71,8 +71,17 @@ func (p *Proxy) CheckProxyHTTP(proxy string) {
 		atomic.AddUint64(&checked, 1)
 	}()
 
-	proxyPort := *port
+	var err error
+	var proxyPort = *port
 	s := strings.Split(proxy, ":")
+	if len(s) > 1 {
+		proxyPort, err = strconv.Atoi(s[1])
+		if err != nil {
+			log.Println(err)
+			return
+		}
+	}
+
 	if len(s) > 1 {
 		var err error
 		proxyPort, err = strconv.Atoi(s[1])
@@ -125,7 +134,7 @@ func (p *Proxy) CheckProxyHTTP(proxy string) {
 			go PrintProxy(s[0], proxyPort)
 		}
 		atomic.AddUint64(&success, 1)
-		exporter.Add(fmt.Sprintf("%s:%d", proxy, *port))
+		exporter.Add(fmt.Sprintf("%s:%d", s[0], proxyPort))
 	}
 }
 
@@ -136,10 +145,10 @@ func (p *Proxy) CheckProxySocks4(proxy string) {
 		atomic.AddUint64(&checked, 1)
 	}()
 
-	proxyPort := *port
+	var err error
+	var proxyPort = *port
 	s := strings.Split(proxy, ":")
 	if len(s) > 1 {
-		var err error
 		proxyPort, err = strconv.Atoi(s[1])
 		if err != nil {
 			log.Println(err)
@@ -180,7 +189,7 @@ func (p *Proxy) CheckProxySocks4(proxy string) {
 			go PrintProxy(s[0], proxyPort)
 		}
 		atomic.AddUint64(&success, 1)
-		exporter.Add(fmt.Sprintf("%s:%d", proxy, *port))
+		exporter.Add(fmt.Sprintf("%s:%d", s[0], proxyPort))
 	}
 }
 
@@ -191,10 +200,10 @@ func (p *Proxy) CheckProxySocks5(proxy string) {
 		atomic.AddUint64(&checked, 1)
 	}()
 
-	proxyPort := *port
+	var err error
+	var proxyPort = *port
 	s := strings.Split(proxy, ":")
 	if len(s) > 1 {
-		var err error
 		proxyPort, err = strconv.Atoi(s[1])
 		if err != nil {
 			log.Println(err)
@@ -235,6 +244,6 @@ func (p *Proxy) CheckProxySocks5(proxy string) {
 			go PrintProxy(s[0], proxyPort)
 		}
 		atomic.AddUint64(&success, 1)
-		exporter.Add(fmt.Sprintf("%s:%d", proxy, *port))
+		exporter.Add(fmt.Sprintf("%s:%d", s[0], proxyPort))
 	}
 }

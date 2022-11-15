@@ -12,6 +12,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 )
 
 func Scanner() {
@@ -34,15 +35,13 @@ func Scanner() {
 		}
 	} else if *input != "" {
 		fmt.Printf("Detected FILE Mode.\n")
-		f, err := os.Open(*input)
+		b, err := os.ReadFile(*input)
 		if err != nil {
 			log.Fatalln("open file err")
 		}
-		defer f.Close()
-		scanner := bufio.NewScanner(f)
-		for scanner.Scan() {
-			ip := scanner.Text()
-			queueChan <- ip
+		lines := strings.Split(string(b), "\n")
+		for _, line := range lines {
+			queueChan <- line
 		}
 	} else {
 		fmt.Printf("Detected ZMAP Mode.\n")

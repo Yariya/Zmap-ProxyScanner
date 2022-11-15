@@ -24,6 +24,11 @@ func (e *Exporter) create() {
 	}
 }
 
+func (e *Exporter) Close() {
+	e.f.WriteString("\n")
+	e.f.Close()
+}
+
 func (e *Exporter) Add(s string) {
 	_, err := e.f.WriteString(s + "\n")
 	if err != nil {
