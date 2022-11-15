@@ -75,7 +75,7 @@ func (p *Proxy) CheckProxyHTTP(proxy string) {
 	var proxyPort = *port
 	s := strings.Split(proxy, ":")
 	if len(s) > 1 {
-		proxyPort, err = strconv.Atoi(s[1])
+		proxyPort, err = strconv.Atoi(strings.TrimSpace(s[1]))
 		if err != nil {
 			log.Println(err)
 			return
@@ -149,7 +149,7 @@ func (p *Proxy) CheckProxySocks4(proxy string) {
 	var proxyPort = *port
 	s := strings.Split(proxy, ":")
 	if len(s) > 1 {
-		proxyPort, err = strconv.Atoi(s[1])
+		proxyPort, err = strconv.Atoi(strings.TrimSpace(s[1]))
 		if err != nil {
 			log.Println(err)
 			return
@@ -204,7 +204,7 @@ func (p *Proxy) CheckProxySocks5(proxy string) {
 	var proxyPort = *port
 	s := strings.Split(proxy, ":")
 	if len(s) > 1 {
-		proxyPort, err = strconv.Atoi(s[1])
+		proxyPort, err = strconv.Atoi(strings.TrimSpace(s[1]))
 		if err != nil {
 			log.Println(err)
 			return
